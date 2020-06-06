@@ -2,3 +2,4 @@ nlu/__init__.py
 nlu/__pycache__
 nlu/*.log
 nlu/results
+nlu/models/*
