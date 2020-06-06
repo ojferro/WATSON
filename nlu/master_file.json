@@ -1,0 +1,81 @@
+{
+    "intents": [
+        {
+            "name": "bye",
+            "usage": [
+                "goodbye",
+                "goodnight",
+                "good bye",
+                "good night",
+                "see ya",
+                "bye bye",
+                "gotta go"
+            ],
+            "action": {
+                "name": "action_respond_bye",
+                "slots": []
+            }
+        },
+        {
+            "name": "greet",
+            "usage" : [
+                "Hi",
+                "Hey",
+                "Hi Watson",
+                "Hey Watson",
+                "Hello",
+                "Good morning",
+                "Good morning Watson",
+                "Good afternoon Watson"
+            ],
+            "action": {
+                "name": "action_respond_greet",
+                "slots": []
+            }
+        },
+        {
+            "name": "play_media",
+            "usage": [
+                "Play [viva la vida](song_name) on [bedroom speakers](device_name)",
+                "Watson, play [viva la vida](song_name) on [bedroom speakers](device_name)",
+                "Play [viva la vida](song_name)",
+                "Watson, play [viva la vida](song_name)",
+                "Watson, play [video.mp4](video_name) video",
+                "Watson, play [video.mp4](video_name) video on [living room tv](device_name)"
+            ],
+            "action": {
+                "name": "action_play_media",
+                "slots": [
+                    {
+                        "name": "song_name",
+                        "type": "text"
+                    },
+                    {
+                        "name": "device_name",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "thank",
+            "usage": [
+                "Thanks",
+                "Thank you",
+                "Thank you so much"
+            ],
+            "action": {
+                "name": "action_respond_thank",
+                "slots": []
+            }
+        },
+        {
+            "name": "",
+            "usage": [],
+            "action": {
+                "name": "action_respond_out_of_scope",
+                "slots":[]
+            }
+        }
+    ]
+}
