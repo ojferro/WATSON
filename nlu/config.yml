@@ -1,24 +1,32 @@
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
 language: en
-pipeline:
-  - name: WhitespaceTokenizer
-  - name: RegexFeaturizer
-  - name: LexicalSyntacticFeaturizer
-  - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
-    analyzer: "char_wb"
-    min_ngram: 1
-    max_ngram: 4
-  - name: DIETClassifier
-    epochs: 100
-  - name: EntitySynonymMapper
-  - name: ResponseSelector
-    epochs: 100
+
+pipeline: supervised_embeddings
+  # - name: WhitespaceTokenizer
+  # - name: RegexFeaturizer
+  # - name: LexicalSyntacticFeaturizer
+  # - name: CountVectorsFeaturizer
+  # - name: CountVectorsFeaturizer
+  #   analyzer: "char_wb"
+  #   min_ngram: 1
+  #   max_ngram: 4
+  # - name: DIETClassifier
+  #   epochs: 100
+  # - name: EntitySynonymMapper
+  # - name: ResponseSelector
+  #   epochs: 100
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
   - name: MemoizationPolicy
-    max_history: 1
+    max_history: 5
+  - name: KerasPolicy
   - name: MappingPolicy
+  - name: EmbeddingPolicy
+  - name: FallbackPolicy
+    nlu_threshold: 0.5 # min confidence required for nlu
+    ambiguity_threshold: 0.2 # min diff between predictions
+    core_threshold: 0.5 # min confidence required for core
+    fallback_action_name: 'action_respond_out_of_scope'
