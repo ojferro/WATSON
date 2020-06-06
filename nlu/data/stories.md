@@ -1,12 +1,19 @@
 ## happy path
 * greet
-  - utter_greet
+  - action_respond_greet
 
 ## thank
 * thank
-  - utter_noworries
+  - action_respond_thank
 
-## goodbye
-* bye
-  - utter_bye
+## complicated
+* greet
+  - action_respond_greet
+* play_media
+  - action_play_media
+* thank
+  - action_respond_thank
 
+## play media
+* play_media
+  - action_play_media
