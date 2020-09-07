@@ -9,22 +9,33 @@
 intents:
   - bye
   - greet
+  - introduce
   - play_media
   - thank
 
 entities:
+  - person_name
   - song_name
   - device_name
+  - artist_name
+  - album_name
 
 slots:
+  person_name:
+      type: text
   song_name:
       type: text
   device_name:
+      type: text
+  artist_name:
+      type: text
+  album_name:
       type: text
 
 actions:
   - action_respond_bye
   - action_respond_greet
+  - action_respond_introduce
   - action_play_media
   - action_respond_thank
   - action_respond_out_of_scope

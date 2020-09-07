@@ -51,6 +51,19 @@ class ActionRespondGreet(Action):
         dispatcher.utter_message(text="Greetings")
 
         return []
+        
+class ActionRespondIntroduce(Action):
+
+    def name(self) -> Text:
+        return "action_respond_introduce"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        dispatcher.utter_message(text="Hello, nice to meet you.")
+
+        return []
 
 class ActionPlayMedia(Action):
 
