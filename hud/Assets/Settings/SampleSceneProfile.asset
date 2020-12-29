@@ -246,7 +246,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.285
     min: 0
     max: 1
 --- !u!114 &6091881328826798125
@@ -314,7 +314,7 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 10.86
+    m_Value: 10
     min: 0.1
   aperture:
     m_OverrideState: 1
