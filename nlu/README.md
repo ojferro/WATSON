@@ -20,3 +20,17 @@ Modify the contents of `master_file.json`, then run:
 python3 add_intent.py
 ```
 Add custom action implementation to `actions.py` file.
+
+
+
+
+
+##### TO RUN VOICE TO TEXT + RASA:
+# Run rasa server
+rasa run --verbose --enable-api
+
+# Run javascript application and go to localhost:8000
+# This will start running the index.html and app.py files
+uvicorn app:app --reload --port 8000
+
+

@@ -1,0 +1,56 @@
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body style="background-color: #353434;">
+<header>
+	<h1><code>WATSON</code></h1>
+	<button id="record" style="background-color: #414141; border: 0px;">Record Voice</button>
+	<div id="output">
+
+	</div>
+</header>
+</body>
+
+<script type="text/javascript">
+	// Set up a new Speech Recognizer <img loading="lazy" width="50" height="61" alt="Rasa Logo" src="https://d33wubrfki0l68.cloudfront.net/70e7a88adf729f18dd46e5010660d16a197b9edb/0004c/static/ef3444fc36faec97ae8bd7bfb568996d/rasa-logo-square.svg">
+	const recognition = new webkitSpeechRecognition();
+	// Set the new language setting.
+	// More info here: https://stackoverflow.com/questions/14257598/what-are-language-codes-in-chromes-implementation-of-the-html5-speech-recogniti
+	recognition.lang = "en-US";
+	recognition.continuous = false;
+	recognition.interimResults = false;
+
+	// Start recognizing after the button is clicked.
+	document.getElementById("record").onclick = function() {
+	  recognition.start();
+	  console.log('Listening...');
+	}
+
+	// Once a result is parsed, send the parsed text to a Rasa server and update HTML
+	recognition.onresult = function(event) {
+	  // Log the transcript to the console.
+	  var transcript = event.results[0][0].transcript;
+	  console.log(transcript)
+	  console.log('Confidence: ' + event.results[0][0].confidence);
+
+	  // Generate the Json that we want to send to Rasa.
+	  var payload = {
+		  method:"POST",
+		  body: JSON.stringify({text: transcript})
+	  }
+
+	  // Send the Payload and update page when we get a response
+	  fetch("/api/", payload)
+		.then(result => {
+			result.json().then(b => {
+				console.log(b);
+				var textnode = document.createElement("h2");
+				textnode.innerHTML = `<code>TEXT: ${transcript.fontcolor("#cf9700")}, INTENT: ${b.intent.name.fontcolor("#cf9700")}, conf. TTS: ${event.results[0][0].confidence.toFixed(3).fontcolor("#cf9700")}, conf. NLU: ${b.intent.confidence.toFixed(3).fontcolor("#cf9700")}</code>`;
+				document.getElementById("output").appendChild(textnode)
+			})
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	}
+</script>
