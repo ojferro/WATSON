@@ -43,3 +43,8 @@ stt/data/
 stt/models/
 
 hud/Assets/RosSharp*
+
+.vscode/
+*/__pycache__/
+nlu/models/*
+nlu/out.log
