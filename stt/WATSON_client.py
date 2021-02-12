@@ -10,7 +10,7 @@ import sys
 import wave
 import json
 
-from deepspeech import Model, printVersions
+from deepspeech import Model#, printVersions
 from timeit import default_timer as timer
 
 try:
@@ -80,7 +80,7 @@ class VersionAction(argparse.Action):
         super(VersionAction, self).__init__(nargs=0, *args, **kwargs)
 
     def __call__(self, *args, **kwargs):
-        printVersions()
+        # printVersions()
         exit(0)
 
 
