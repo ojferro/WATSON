@@ -1,0 +1,3 @@
+[submodule "WATSON_HUD"]
+	path = WATSON_HUD
+	url = git@github.com:ojferro/WATSON_HUD.git
